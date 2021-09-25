@@ -1,0 +1,28 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="newContact" type="Object"/>
+    <aura:attribute name="simpleNewContact" type="Object"/>
+    <force:recordData aura:id="contactRecordCreator" 
+        fields="LastName,AccountId"
+        targetRecord="{!v.newContact}"
+        targetFields ="{!v.simpleNewContact}"
+        />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-page-header" role="banner">
+        <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-left" title="Case Study Title">Create Contact</h1>
+    </div>
+
+    <div class="slds-form--stacked">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="lastName">Enter last name: </label>
+            <div class="slds-form-element__control">
+              <ui:inputText class="slds-input" aura:id="lastName" value="{!v.simpleNewContact.LastName}" required="true"/>
+            </div>
+        </div>
+        <br/>
+        <div class="slds-form-element">
+        	<ui:button class="slds-button slds-button--neutral" press="{!c.cancel}" label="Cancel" />
+        	<ui:button class="slds-button slds-button--brand" press="{!c.createcontact}" label="Create" />
+        </div>
+    </div>
+</aura:component>	
